@@ -8,103 +8,101 @@
     <title>AJAX Pure JS</title>
 </head>
 <body>
-    <section class="content">
-        <div class="container my-5 px-4">
-            <div class="row mb-3">
-                <div class="col-12 mb-3">
-                    <h4>Repositório:
-                        <a href="https://github.com/tiagofrancafernandes/front-end-snippets" target="_blank">
-                            GH/tiagofrancafernandes/front-end-snippets
-                        </a>
-                    </h4>
-                </div>
+    <div class="container my-5 px-4">
+        <div class="row mb-3">
+            <div class="col-12 mb-3">
+                <h4>Repositório:
+                    <a href="https://github.com/tiagofrancafernandes/front-end-snippets" target="_blank">
+                        GH/tiagofrancafernandes/front-end-snippets
+                    </a>
+                </h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h3>Como está</h3>
             </div>
 
-            <div class="row">
-                <div class="col-12 mb-3">
-                    <h3>Como está</h3>
-                </div>
-
-                <div class="col-sm-3">
-                    <!-- text input -->
-                    <div class="form-group">
-                        <label>Atividade Exercida:</label>
-                        <input
-                            type="text"
-                            name="function"
-                            maxlength="30"
-                            class="form-control"
-                            value="Coordenador"
-                            placeholder="Atividade exercida pela Pessoa..."
-                        >
-                    </div>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-12 mb-3">
-                    <h3>Como deve ficar</h3>
-                </div>
-
-                <div class="col-md-4 col-sm-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                        <label>
-                            Cargo:
-                            <strong
-                                class="text-danger"
-                                title="Campo obrigatório"
-                            >*</strong>
-                        </label>
-                        <select
-                            class="form-control"
-                            name="function"
-                            placeholder="Selecione um cargo"
-                            required=""
-                            style="width: 100%"
-                        >
-                            <option value="">Selecione um cargo</option>
-                            <option value="01">Mobilizador Político / Eleitoral Local</option>
-                            <option value="02">Comunicador Político</option>
-                            <option value="03">Coordenador</option>
-                            <option value="04">Motorista</option>
-                            <option value="05">Serviços Gerais</option>
-                            <option value="06">Vigia</option>
-                            <option value="07">Administrativo</option>
-                            <!--
-                                <option value="09">Sem itens</option>
-                            -->
-                        </select>
-                    </div>
-                </div>
-
-                <div class="col-md-8 col-sm-6">
-                    <!-- text input -->
-                    <div class="form-group">
-                        <label>
-                            Principal atividade exercida:
-                            <strong
-                                class="text-danger"
-                                title="Campo obrigatório"
-                            >*</strong>
-                        </label>
-                        <select
-                            class="form-control"
-                            name="function_description"
-                            placeholder="Selecione a principal atividade"
-                            required=""
-                            disabled=""
-                            style="width: 100%"
-                        >
-                            <option value="">Selecione a principal atividade</option>
-                        </select>
-                    </div>
+            <div class="col-sm-3">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Atividade Exercida:</label>
+                    <input
+                        type="text"
+                        name="function"
+                        maxlength="30"
+                        class="form-control"
+                        value="Coordenador"
+                        placeholder="Atividade exercida pela Pessoa..."
+                    >
                 </div>
             </div>
         </div>
-    </section>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h3>Como deve ficar</h3>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>
+                        Cargo:
+                        <strong
+                            class="text-danger"
+                            title="Campo obrigatório"
+                        >*</strong>
+                    </label>
+                    <select
+                        class="form-control"
+                        name="function"
+                        placeholder="Selecione um cargo"
+                        required=""
+                        style="width: 100%"
+                    >
+                        <option value="">Selecione um cargo</option>
+                        <option value="01">Mobilizador Político / Eleitoral Local</option>
+                        <option value="02">Comunicador Político</option>
+                        <option value="03">Coordenador</option>
+                        <option value="04">Motorista</option>
+                        <option value="05">Serviços Gerais</option>
+                        <option value="06">Vigia</option>
+                        <option value="07">Administrativo</option>
+                        <!--
+                            <option value="09">Sem itens</option>
+                        -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>
+                        Principal atividade exercida:
+                        <strong
+                            class="text-danger"
+                            title="Campo obrigatório"
+                        >*</strong>
+                    </label>
+                    <select
+                        class="form-control"
+                        name="function_description"
+                        placeholder="Selecione a principal atividade"
+                        required=""
+                        disabled=""
+                        style="width: 100%"
+                    >
+                        <option value="">Selecione a principal atividade</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         function createDescriptionOptions(data) {
             if (!data || typeof data != 'object') {
