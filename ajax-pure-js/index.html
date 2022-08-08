@@ -150,6 +150,10 @@
                     console.log(data)
                     createDescriptionOptions(data)
                 })
+                .catch(error => {
+                    console.error(error)
+                    createDescriptionOptions([])
+                })
         }
     </script>
 
