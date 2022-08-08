@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX Pure JS</title>
+</head>
+<body>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h3>Como está</h3>
+                </div>
+
+                <div class="col-sm-3">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Atividade Exercida:</label>
+                        <input
+                            type="text"
+                            name="function"
+                            maxlength="30"
+                            class="form-control"
+                            value="Coordenador"
+                            placeholder="Atividade exercida pela Pessoa..."
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h3>Como ele quer que fique</h3>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>
+                            Cargo:
+                            <strong
+                                class="text-danger"
+                                title="Campo obrigatório"
+                            >*</strong>
+                        </label>
+                        <select
+                            class="form-control"
+                            name="function"
+                            placeholder="Selecione um cargo"
+                            required=""
+                            style="width: 100%"
+                        >
+                            <option value="">Selecione um cargo</option>
+                            <option value="01">Mobilizador Político / Eleitoral Local</option>
+                            <option value="02">Comunicador Político</option>
+                            <option value="03">Coordenador</option>
+                            <option value="04">Motorista</option>
+                            <option value="05">Serviços Gerais</option>
+                            <option value="06">Vigia</option>
+                            <option value="07">Administrativo</option>
+                            <!--
+                                <option value="09">Sem itens</option>
+                            -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-sm-6">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>
+                            Principal atividade exercida:
+                            <strong
+                                class="text-danger"
+                                title="Campo obrigatório"
+                            >*</strong>
+                        </label>
+                        <select
+                            class="form-control"
+                            name="function_description"
+                            placeholder="Selecione a principal atividade"
+                            required=""
+                            disabled=""
+                            style="width: 100%"
+                        >
+                            <option value="">Selecione a principal atividade</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function createDescriptionOptions(data) {
+            if (!data || typeof data != 'object') {
+                return
+            }
+
+            let functionDescriptionSelect = document.querySelector('select[name="function_description"]')
+
+            if (!functionDescriptionSelect) {
+                return
+            }
+
+            let firstOption = '<option value="">Selecione a principal atividade</option>'
+
+            if (!data.length) {
+                functionDescriptionSelect.disabled = true
+                functionDescriptionSelect.innerHTML = firstOption
+
+                return
+            }
+
+            let options = firstOption
+
+            data.forEach((item, index) => {
+                options += `
+                    <option value="${index}">${item}</option>
+                `
+                // options = options + '...'
+            })
+
+            functionDescriptionSelect.innerHTML = options
+            functionDescriptionSelect.disabled = false
+            functionDescriptionSelect.focus()
+        }
+
+        function getDescriptions(functionId) {
+            if (!functionId) {
+                return
+            }
+
+            let baseUrl = `${window.location.protocol}//${window.location.host}` // window.location.protocol + '//' + window.location.host
+            // window.location.protocol -> http: | https:
+            // window.location.host -> 0.0.0.0:8004 | localhost:8004 | localhost
+
+            fetch(`${baseUrl}/api/get-function-descriptions/${functionId}`)
+                .then(response => response.json())
+                .then(function(data) {
+                    console.log(data)
+                    createDescriptionOptions(data)
+                })
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let functionSelect = document.querySelector('select[name="function"]')
+            let functionDescriptionSelect = document.querySelector('select[name="function_description"]')
+
+            if (functionSelect && functionDescriptionSelect) {
+
+                //INICIO
+                functionSelect.addEventListener('change', event => {
+                    let value = event.target.value
+                    if (event.target.value.length) {
+                        getDescriptions(value)
+                        return
+                    }
+
+                    functionDescriptionSelect.innerHTML = '<option value="">Selecione a principal atividade</option>'
+                    functionDescriptionSelect.value = ''
+                    functionDescriptionSelect.disabled = true
+                })
+                //FIM
+
+            }
+        });
+    </script>
+</body>
+</html>
